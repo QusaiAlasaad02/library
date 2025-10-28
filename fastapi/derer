@@ -1,0 +1,16 @@
+                                                               Table "public.books"
+    Column    |       Type        | Collation | Nullable |              Default              | Storage  | Compression | Stats target | Description 
+--------------+-------------------+-----------+----------+-----------------------------------+----------+-------------+--------------+-------------
+ id           | integer           |           | not null | nextval('books_id_seq'::regclass) | plain    |             |              | 
+ title        | character varying |           | not null |                                   | extended |             |              | 
+ author       | character varying |           | not null |                                   | extended |             |              | 
+ year         | integer           |           |          |                                   | plain    |             |              | 
+ published_on | date              |           |          |                                   | plain    |             |              | 
+Indexes:
+    "books_pkey" PRIMARY KEY, btree (id)
+Not-null constraints:
+    "books_id_not_null" NOT NULL "id"
+    "books_title_not_null" NOT NULL "title"
+    "books_author_not_null" NOT NULL "author"
+Access method: heap
+

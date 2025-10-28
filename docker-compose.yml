@@ -1,0 +1,40 @@
+services:
+  db:
+    image: postgres:15
+    container_name: library_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: librarydb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d librarydb"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  backend:
+    build: fastapi/
+    container_name: library_backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql+psycopg://postgres:password@db:5432/librarydb
+      UVICORN_RELOAD: "false"
+    ports:
+      - "8000:8000"
+    command: >
+      sh -c "
+      alembic upgrade head &&
+      sleep 10 &&
+      uvicorn main:app --host 0.0.0.0 --port 8000 ${UVICORN_RELOAD:+--reload}
+      "
+
+volumes:
+  postgres_data:
