@@ -19,21 +19,21 @@ It allows managing **books** and **members**, with operations for **borrowing** 
 
 ## Project Structure
 
-project/
-│
-├── main.py # FastAPI entry point
-├── models/
-│ ├── book.py # Book model & schema
-│ └── member.py # Member model & schema
-├── services/
-│ ├── book_service.py # Business logic for books
-│ └── member_service.py # Business logic for members
-├── alembic/ # Alembic migration files
-│ └── versions/ # Migration history
-├── requirements.txt # Python dependencies
-├── Dockerfile # Dockerfile for backend
-├── docker-compose.yml # Compose file for backend + PostgreSQL
-└── README.md # Documentation
+#### project/
+#### │
+#### ├── main.py # FastAPI entry point
+#### ├── models/
+#### │ ├── book.py # Book model & schema
+#### │ └── member.py # Member model & schema
+#### ├── services/
+#### │ ├── book_service.py # Business logic for books
+#### │ └── member_service.py # Business logic for members
+#### ├── alembic/ # Alembic migration files
+#### │ └── versions/ # Migration history
+#### ├── requirements.txt # Python dependencies
+#### ├── Dockerfile # Dockerfile for backend
+#### ├── docker-compose.yml # Compose file for backend + PostgreSQL
+#### └── README.md # Documentation
 
 ---
 
